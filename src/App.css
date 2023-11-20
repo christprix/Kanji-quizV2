@@ -1,7 +1,11 @@
 .wrapper {
-  height: 100vh;
+  height: 98vh;
   display: flex;
   flex-direction: column;
+}
+
+.title {
+  margin-bottom: -.5rem;
 }
 
 .options {
@@ -18,7 +22,7 @@
 }
 
 .mainImage {
-  width: 30%;
+  width: 28%;
   align-self: center;
   /* border-radius: 50%;
   border-style: solid;
@@ -33,6 +37,12 @@
   border-width: 7px;
   border-style: solid;
   border-color: black;
+  font-size: xx-large;
+}
+
+.selected {
+  background-color: #66aa33;
+  color: white;
 }
 
 .btn {
