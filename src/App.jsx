@@ -8,7 +8,6 @@ function App() {
 
   function handleClick(e) {
     e.preventDefault
-    console.log(e.currentTarget);
     document.querySelectorAll(".option").forEach((div) => {
       div.classList.remove('selected')
     })
