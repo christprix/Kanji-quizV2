@@ -51,6 +51,7 @@
   border-width: 3px; */
 }
 
+
 .option {
   display: flex;
   justify-content: center;
@@ -62,6 +63,14 @@
   font-size: xx-large;
   background-color: white;
   color: black
+}
+
+.correct {
+  background-color: #66aa33;
+}
+
+.wrong {
+  background-color: red;
 }
 
 .selected {
