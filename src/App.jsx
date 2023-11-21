@@ -16,16 +16,21 @@ function App() {
   return (
     <>
       <div className='wrapper'>
-        <h1 className='title'>Kanji Learner</h1>
-        <img className='mainImage' src={student} alt="" />
-        <p className='message'>Select a Difficulty</p>
-        <div className='options'>
-          <button className='option' onClick={handleClick}><FontAwesomeIcon icon={faChildren} size='xl' /></button>
-          <button className='option' onClick={handleClick}><FontAwesomeIcon icon={faUserTie} size='xl' /></button>
-          <button className='option' onClick={handleClick}><FontAwesomeIcon icon={faUserNinja} size='xl' /></button>
-          <button className='option' onClick={handleClick}><FontAwesomeIcon icon={faDragon} size='xl' /></button>
+        <div className="header">
+          <p className='title'>Kanji 漢字 Warrior 戦士</p>
         </div>
-        <button className='btn'>Start Game</button>
+        <div className="container">
+          <p className='welcome'>Welcome weary traveller to Kanji Warrior!</p>
+          {/* <img className='mainImage' src={student} alt="" /> */}
+          <p className='message'>Select your Destiny &quot;Difficuly&quot;</p>
+          <div className='options'>
+            <button className='option' onClick={handleClick}><FontAwesomeIcon icon={faChildren} size='xl' /></button>
+            <button className='option' onClick={handleClick}><FontAwesomeIcon icon={faUserTie} size='xl' /></button>
+            <button className='option' onClick={handleClick}><FontAwesomeIcon icon={faUserNinja} size='xl' /></button>
+            <button className='option' onClick={handleClick}><FontAwesomeIcon icon={faDragon} size='xl' /></button>
+          </div>
+          <button className='btn'>Start Game</button>
+        </div>
       </div>
     </>
   )
