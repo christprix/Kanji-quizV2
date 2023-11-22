@@ -98,6 +98,8 @@
   border-radius: 8px;
   text-decoration: none;
   border: none;
+  color: white;
+  font-size: x-large;
 }
 
 .progress {
