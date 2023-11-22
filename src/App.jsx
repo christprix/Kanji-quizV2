@@ -14,34 +14,49 @@ function App() {
   const [icons, setIcons] = useState(ICONS)
   const [answer, setAnswer] = useState('')
   const score = useRef(0)
+  const [next, setNext] = useState('Start Game')
+  const [chances, setChances] = useState(2)
+  const [difficulty, setDifficulty] = useState(null)
+
+
 
   function start(e) {
-    axios.get(`https://kanjiapi.dev/v1/kanji/kyoiku`)
-      .then(res => {
-        const multiplier = res.data.length
-        let num = Math.floor(Math.random() * multiplier)
-        function getnum() {
-          return Math.floor(Math.random() * multiplier)
-        }
-        axios.get(`https://kanjiapi.dev/v1/kanji/${res.data[`${num}`]}`)
-          .then(response => {
-            let kanji_data = response.data
-            setKanji([{
-              id: kanji_data.unicode,
-              character: kanji_data.kanji,
-              meaning: decodeString(kanji_data.meanings['0']),
-              options: [res.data[getnum()], res.data[getnum()], res.data[getnum()], kanji_data.kanji].sort(() => Math.random() - 0.5)
-            }
-            ]);
-            setGameStart(true)
-            setAnswer(kanji_data.kanji)
-            setMessage('')
-            console.log(answer);
-            document.querySelector('.progress').style.width = '100%'
-            document.querySelector('.progress').style.borderColor = 'black'
-
-          })
-      })
+    if (difficulty != null) {
+      axios.get(`https://kanjiapi.dev/v1/kanji/${difficulty}`)
+        .then(res => {
+          const multiplier = res.data.length
+          let num = Math.floor(Math.random() * multiplier)
+          function getnum() {
+            return Math.floor(Math.random() * multiplier)
+          }
+          axios.get(`https://kanjiapi.dev/v1/kanji/${res.data[`${num}`]}`)
+            .then(response => {
+              let kanji_data = response.data
+              setKanji([{
+                id: kanji_data.unicode,
+                character: kanji_data.kanji,
+                meaning: decodeString(kanji_data.meanings['0']),
+                options: [res.data[getnum()], res.data[getnum()], res.data[getnum()], kanji_data.kanji].sort(() => Math.random() - 0.5)
+              }
+              ]);
+              setGameStart(true)
+              setAnswer(kanji_data.kanji)
+              setMessage('')
+              console.log(answer);
+              document.querySelector('.progress').style.width = '100%'
+              document.querySelector('.progress').style.borderColor = 'black'
+              document.querySelector('.btn').style.backgroundColor = 'blue'
+              document.querySelectorAll(".option").forEach((div) => {
+                div.classList.remove('selected')
+              })
+              setChances(2)
+              setNext('Next')
+            })
+        })
+    }
+    else {
+      setMessage("Pick a difficulty dummy!")
+    }
   }
 
   function decodeString(str) {
@@ -62,9 +77,9 @@ function App() {
           </div >
           <p className='message'>{message}</p>
           <div className='options'>
-            <Button kanji={kanji} key={1} icon={icons} gameStart={gameStart} score={score} answer={answer} />
+            <Button kanji={kanji} key={1} icon={icons} gameStart={gameStart} score={score} answer={answer} chances={chances} setChances={setChances} setDifficulty={setDifficulty} />
           </div>
-          <button className='btn' onClick={start}>Start Game</button>
+          <button className='btn' onClick={start}>{next}</button>
         </div>
       </div>
     </>
@@ -72,9 +87,9 @@ function App() {
 }
 
 const ICONS = [
-  { icon: <FontAwesomeIcon icon={faChildren} size='xl' /> },
-  { icon: <FontAwesomeIcon icon={faUserTie} size='xl' /> },
-  { icon: <FontAwesomeIcon icon={faUserNinja} size='xl' /> },
-  { icon: <FontAwesomeIcon icon={faDragon} size='xl' /> }
+  { icon: <FontAwesomeIcon icon={faChildren} size='xl' />, kanjiLevel: 'grade-2', path: 'Path of the Child - Easy' },
+  { icon: <FontAwesomeIcon icon={faUserTie} size='xl' />, kanjiLevel: 'kyoiku', path: 'Path of the Salaryman - Medium' },
+  { icon: <FontAwesomeIcon icon={faUserNinja} size='xl' />, kanjiLevel: 'joyo', path: 'Path of the Ninja - Hard' },
+  { icon: <FontAwesomeIcon icon={faDragon} size='xl' />, kanjiLevel: 'grade-8', path: 'Path of the Dragon - Good luck buddy' }
 ]
 export default App
