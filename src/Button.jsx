@@ -11,6 +11,7 @@ export default function Button({ icon, kanji }) {
       div.classList.remove('selected');
       div.classList.remove('wrong');
       div.classList.remove('correct');
+      div.disabled = false;
     })
   }, [kanji])
 

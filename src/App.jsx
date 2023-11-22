@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Button from './Button'
+import Question from './Question'
 import axios from 'axios'
 import student from '/student.gif'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +10,7 @@ import { faUserTie, faChildren, faDragon, faUserNinja } from '@fortawesome/free-
 function App() {
   const [gameStart, setGameStart] = useState(false)
   const [kanji, setKanji] = useState('wait')
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('Select your Destiny "Difficulty"')
   const [icons, setIcons] = useState(ICONS)
 
   function start(e) {
@@ -30,9 +31,8 @@ function App() {
               options: [res.data[getnum()], res.data[getnum()], res.data[getnum()], kanji_data.kanji].sort(() => Math.random() - 0.5)
             }
             ]);
-            console.log(kanji);
-            console.log(icons);
             setGameStart(true)
+            setMessage('')
           })
       })
   }
@@ -58,9 +58,9 @@ function App() {
           <p className='title'>Kanji 漢字 Warrior 戦士</p>
         </div>
         <div className="container">
-          <p className='welcome'>Welcome weary traveller to Kanji Warrior!</p>
+          <Question kanji={kanji[0].meaning} key={kanji} />
           {/* <img className='mainImage' src={student} alt="" /> */}
-          <p className='message'>Select your Destiny &quot;Difficuly&quot;</p>
+          <p className='message'>{message}</p>
           <div className='options'>
             <Button kanji={kanji} key={1} icon={icons} gameStart={gameStart} />
           </div>
