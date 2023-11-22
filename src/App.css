@@ -32,7 +32,7 @@
 
 .welcome {
   font-size: small;
-  margin-bottom: 1rem;
+  margin: 0;
   color: white;
   background-color: black;
   border-radius: 8px;
