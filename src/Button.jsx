@@ -21,6 +21,7 @@ export default function Button({ icon, kanji, score, answer, chances, setChances
     })
     e.currentTarget.classList.add("selected")
     setDifficulty(e.currentTarget.id)
+    document.querySelector('.btn').style.backgroundColor = 'blue'
     console.log(e.currentTarget.id);
   }
 
