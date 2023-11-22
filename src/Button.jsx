@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import Modal from './Modal'
 
-export default function Button({ icon, kanji, score, answer, chances, setChances, setDifficulty, setImage }) {
+export default function Button({ icon, kanji, score, answer, chances, setChances, setDifficulty, setImage, open, setMessage }) {
   const [display] = useState(icon)
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function Button({ icon, kanji, score, answer, chances, setChances
         score.current = score.current + 1
         document.querySelector(".progress_fill").style.width = `${score.current * 10}%`
         setChances(0)
+        if (score.current == 10) { console.log('you win!'); setMessage('You win!') }
       }
       else {
         if (score.current > 0) {
@@ -52,7 +54,7 @@ export default function Button({ icon, kanji, score, answer, chances, setChances
   if (kanji === 'wait') {
     return (
       <>
-
+        <Modal isOpen={open} />
         {
           icon.map((i, index) => {
             {
@@ -73,6 +75,7 @@ export default function Button({ icon, kanji, score, answer, chances, setChances
             return <button className="option" key={index} onClick={handleClick2}>{k}</button>
           })
         }
+
       </>
     )
   }

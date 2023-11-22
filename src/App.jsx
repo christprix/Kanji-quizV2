@@ -22,6 +22,7 @@ function App() {
   const [chances, setChances] = useState(2)
   const [difficulty, setDifficulty] = useState(null)
   const [image, setImage] = useState(GAME)
+  const [open, setOpen] = useState(false)
 
 
 
@@ -84,7 +85,7 @@ function App() {
           </div >
           <p className='message'>{message}</p>
           <div className='options'>
-            <Button kanji={kanji} key={1} icon={icons} gameStart={gameStart} score={score} answer={answer} chances={chances} setChances={setChances} setDifficulty={setDifficulty} setImage={setImage} />
+            <Button kanji={kanji} key={1} icon={icons} gameStart={gameStart} score={score} answer={answer} chances={chances} setChances={setChances} setDifficulty={setDifficulty} setImage={setImage} open={open} setOpen={setOpen} setMessage={setMessage} />
           </div>
           <button className='btn' onClick={start}>{next}</button>
         </div>
