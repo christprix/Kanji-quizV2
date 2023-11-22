@@ -46,6 +46,7 @@
   height: 50vh;
   gap: 5px;
   text-align: center;
+  width: 95%;
 }
 
 .message {
