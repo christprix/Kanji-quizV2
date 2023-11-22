@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Button({ icon, kanji, score, answer, chances, setChances, setDifficulty }) {
+export default function Button({ icon, kanji, score, answer, chances, setChances, setDifficulty, setImage }) {
   const [display] = useState(icon)
 
   useEffect(() => {
-    console.log(kanji[0].character);
     document.querySelector(".progress_fill").style.width = `${score.current * 10}%`
     document.querySelectorAll(".option").forEach((div) => {
       div.classList.remove('selected');
@@ -21,8 +20,8 @@ export default function Button({ icon, kanji, score, answer, chances, setChances
     })
     e.currentTarget.classList.add("selected")
     setDifficulty(e.currentTarget.id)
+    setImage(e.currentTarget.value);
     document.querySelector('.btn').style.backgroundColor = 'blue'
-    console.log(e.currentTarget.id);
   }
 
   function handleClick2(e) {
@@ -57,7 +56,7 @@ export default function Button({ icon, kanji, score, answer, chances, setChances
         {
           icon.map((i, index) => {
             {
-              return <button className="option" key={index} id={i.kanjiLevel} onClick={handleClick}>{i.icon}
+              return <button className="option" key={index} id={i.kanjiLevel} value={i.image} onClick={handleClick}>{i.icon}
                 <div className='difficulty'>{i.path}</div>
               </button>
             }

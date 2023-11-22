@@ -3,7 +3,11 @@ import './App.css'
 import Button from './Button'
 import Question from './Question'
 import axios from 'axios'
-import student from '/student.gif'
+import ninja from './ninjagif.gif'
+import salaryman from './salaryman.gif'
+import dragon from './dragon.gif'
+import student from './kidA.gif'
+import kanji from './kanji.gif'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserTie, faChildren, faDragon, faUserNinja } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,6 +21,7 @@ function App() {
   const [next, setNext] = useState('Start Game')
   const [chances, setChances] = useState(2)
   const [difficulty, setDifficulty] = useState(null)
+  const [image, setImage] = useState(KANJI)
 
 
 
@@ -45,6 +50,7 @@ function App() {
               console.log(answer);
               document.querySelector('.progress').style.width = '100%'
               document.querySelector('.progress').style.borderColor = 'black'
+              document.querySelector('.progress').style.opacity = "1"
               document.querySelector('.btn').style.backgroundColor = 'blue'
               document.querySelectorAll(".option").forEach((div) => {
                 div.classList.remove('selected')
@@ -72,12 +78,13 @@ function App() {
         </div>
         <div className="container">
           <Question kanji={kanji[0].meaning} key={kanji} />
+          <img className='mainImage' src={image} alt="" />
           <div className="progress">
             <div className="progress_fill"></div>
           </div >
           <p className='message'>{message}</p>
           <div className='options'>
-            <Button kanji={kanji} key={1} icon={icons} gameStart={gameStart} score={score} answer={answer} chances={chances} setChances={setChances} setDifficulty={setDifficulty} />
+            <Button kanji={kanji} key={1} icon={icons} gameStart={gameStart} score={score} answer={answer} chances={chances} setChances={setChances} setDifficulty={setDifficulty} setImage={setImage} />
           </div>
           <button className='btn' onClick={start}>{next}</button>
         </div>
@@ -87,9 +94,11 @@ function App() {
 }
 
 const ICONS = [
-  { icon: <FontAwesomeIcon icon={faChildren} size='xl' />, kanjiLevel: 'grade-2', path: 'Path of the Child - Easy' },
-  { icon: <FontAwesomeIcon icon={faUserTie} size='xl' />, kanjiLevel: 'kyoiku', path: 'Path of the Salaryman - Medium' },
-  { icon: <FontAwesomeIcon icon={faUserNinja} size='xl' />, kanjiLevel: 'joyo', path: 'Path of the Ninja - Hard' },
-  { icon: <FontAwesomeIcon icon={faDragon} size='xl' />, kanjiLevel: 'grade-8', path: 'Path of the Dragon - Good luck buddy' }
+  { icon: <FontAwesomeIcon icon={faChildren} size='xl' />, kanjiLevel: 'grade-2', path: 'Path of the Child - Easy', image: student },
+  { icon: <FontAwesomeIcon icon={faUserTie} size='xl' />, kanjiLevel: 'kyoiku', path: 'Path of the Salaryman - Medium', image: salaryman },
+  { icon: <FontAwesomeIcon icon={faUserNinja} size='xl' />, kanjiLevel: 'joyo', path: 'Path of the Ninja - Hard', image: ninja },
+  { icon: <FontAwesomeIcon icon={faDragon} size='xl' />, kanjiLevel: 'grade-8', path: 'Path of the Dragon - Good luck buddy', image: dragon }
 ]
+
+const KANJI = kanji
 export default App
