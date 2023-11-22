@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Button({ icon, kanji }) {
-  const [display, setDisplay] = useState(icon)
-  const [answer, setAnswer] = useState('test')
+export default function Button({ icon, kanji, score, answer }) {
+  const [display] = useState(icon)
+
   useEffect(() => {
-    console.log(display);
     console.log(kanji[0].character);
-    setAnswer(kanji[0].character)
+    document.querySelector(".progress_fill").style.width = `${score.current * 10}%`
     document.querySelectorAll(".option").forEach((div) => {
       div.classList.remove('selected');
       div.classList.remove('wrong');
@@ -29,10 +28,14 @@ export default function Button({ icon, kanji }) {
     if (e.currentTarget.innerHTML === answer) {
       e.currentTarget.disabled = true;
       e.currentTarget.classList.add("correct")
+      score.current = score.current + 1
+      document.querySelector(".progress_fill").style.width = `${score.current * 10}%`
     }
     else {
       e.currentTarget.disabled = true;
       e.currentTarget.classList.add("wrong")
+      score.current = score.current - 1
+      document.querySelector(".progress_fill").style.width = `${score.current * 10}%`
     }
   }
   if (kanji === 'wait') {

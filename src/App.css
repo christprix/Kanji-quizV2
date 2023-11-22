@@ -30,8 +30,8 @@
 }
 
 .welcome {
-  font-size: medium;
-  margin-bottom: 2rem;
+  font-size: small;
+  margin-bottom: 1rem;
 }
 
 .options {
@@ -85,8 +85,26 @@
 
 .btn {
   width: 90%;
-  height: 8em;
+  height: 6em;
   margin: 3%;
   position: absolute;
   bottom: 0;
+}
+
+.progress {
+  width: 0%;
+  height: 15px;
+  background: white;
+  border-radius: 30px;
+  border-style: solid;
+  overflow: hidden;
+  border-color: white;
+  transition: all 2s;
+}
+
+.progress_fill {
+  width: 0%;
+  height: 100%;
+  background: #66aa33;
+  transition: all .5s;
 }

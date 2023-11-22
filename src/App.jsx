@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './App.css'
 import Button from './Button'
 import Question from './Question'
@@ -12,6 +12,8 @@ function App() {
   const [kanji, setKanji] = useState('wait')
   const [message, setMessage] = useState('Select your Destiny "Difficulty"')
   const [icons, setIcons] = useState(ICONS)
+  const [answer, setAnswer] = useState('')
+  const score = useRef(0)
 
   function start(e) {
     axios.get(`https://kanjiapi.dev/v1/kanji/kyoiku`)
@@ -32,7 +34,12 @@ function App() {
             }
             ]);
             setGameStart(true)
+            setAnswer(kanji_data.kanji)
             setMessage('')
+            console.log(answer);
+            document.querySelector('.progress').style.width = '100%'
+            document.querySelector('.progress').style.borderColor = 'black'
+
           })
       })
   }
@@ -42,15 +49,6 @@ function App() {
     textArea.innerHTML = str
     return textArea.value
   }
-
-  function handleClick(e) {
-    console.log(kanji);
-    e.preventDefault
-    document.querySelectorAll(".option").forEach((div) => {
-      div.classList.remove('selected')
-    })
-    e.currentTarget.classList.add("selected")
-  }
   return (
     <>
       <div className='wrapper'>
@@ -59,10 +57,12 @@ function App() {
         </div>
         <div className="container">
           <Question kanji={kanji[0].meaning} key={kanji} />
-          {/* <img className='mainImage' src={student} alt="" /> */}
+          <div className="progress">
+            <div className="progress_fill"></div>
+          </div >
           <p className='message'>{message}</p>
           <div className='options'>
-            <Button kanji={kanji} key={1} icon={icons} gameStart={gameStart} />
+            <Button kanji={kanji} key={1} icon={icons} gameStart={gameStart} score={score} answer={answer} />
           </div>
           <button className='btn' onClick={start}>Start Game</button>
         </div>
