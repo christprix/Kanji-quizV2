@@ -7,21 +7,21 @@ import ninja from './ninjagif.gif'
 import salaryman from './salaryman.gif'
 import dragon from './dragon.gif'
 import student from './kidA.gif'
-import kanji from './kanji.gif'
+import game from './game.gif'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserTie, faChildren, faDragon, faUserNinja } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [gameStart, setGameStart] = useState(false)
   const [kanji, setKanji] = useState('wait')
-  const [message, setMessage] = useState('Select your Destiny "Difficulty"')
+  const [message, setMessage] = useState('Choose your Path "Difficulty"')
   const [icons, setIcons] = useState(ICONS)
   const [answer, setAnswer] = useState('')
   const score = useRef(0)
   const [next, setNext] = useState('Start Game')
   const [chances, setChances] = useState(2)
   const [difficulty, setDifficulty] = useState(null)
-  const [image, setImage] = useState(KANJI)
+  const [image, setImage] = useState(GAME)
 
 
 
@@ -100,5 +100,5 @@ const ICONS = [
   { icon: <FontAwesomeIcon icon={faDragon} size='xl' />, kanjiLevel: 'grade-8', path: 'Path of the Dragon - Good luck buddy', image: dragon }
 ]
 
-const KANJI = kanji
+const GAME = game
 export default App
