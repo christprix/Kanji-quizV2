@@ -75,7 +75,7 @@ function App() {
     <>
       <div className='wrapper'>
         <div className="header">
-          <p className='title'>Kanji 漢字 Dojo 戦士</p>
+          <p className='title'>Kanji 漢字 Dojo 道場</p>
         </div>
         <div className="container">
           <Question kanji={kanji[0].meaning} key={kanji} />
