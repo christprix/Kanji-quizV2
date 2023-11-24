@@ -5,7 +5,7 @@ export default function Question({ kanji }) {
   if (kanji === undefined) {
     return (
       <>
-        <p className='welcome'>Welcome weary traveller to Kanji Warrior!</p>
+        <p className='welcome'>Welcome weary traveller to the Kanji Dojo!</p>
       </>
     )
   }
